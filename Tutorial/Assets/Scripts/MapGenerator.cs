@@ -9,7 +9,7 @@ public class MapGenerator : MonoBehaviour {
         public int x;
         public int z;
     }
-    public int boardsize = 20;
+    public int boardsize = 30;
     List<node> board = new List<node>(); 
     public int blockCount;
     public int enemyCount;

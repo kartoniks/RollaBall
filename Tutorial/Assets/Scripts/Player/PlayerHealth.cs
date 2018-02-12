@@ -26,6 +26,8 @@ public class PlayerHealth : MonoBehaviour {
         //take damage
         if (collision.gameObject.tag == "Enemy")
         {
+            FindObjectOfType<AudioManager>().Play("hit");
+
             enemyDamage colliderDmg = collision.gameObject.GetComponent<enemyDamage>();
             health -= colliderDmg.damage;
         }

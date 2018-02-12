@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -28,6 +29,12 @@ public class LevelManager : MonoBehaviour {
             EndGame();
             return;
         }
+
+        if (Time.timeScale == 0 && Input.GetMouseButtonDown(0))     //after game over returns to menu
+        {
+            Time.timeScale = 1;
+            SceneManager.LoadScene("Menu");
+        }
     }
 
 
@@ -47,7 +54,9 @@ public class LevelManager : MonoBehaviour {
         if (bestScore < level)
             bestScore = level;
         PlayerPrefs.SetInt("bestScore", bestScore);
-        Debug.Log(bestScore);
+
+
         Player.GetComponent<PlayerHealth>().health = 1;
+
     }
 }

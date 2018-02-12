@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class PlayerShoot : MonoBehaviour {
     public float fireRate = 1.0f;
     public int damage = 10;
     public GameObject explosion;
+    public Image nextShotImage;
     float nextFire = 0f;
 	// Use this for initialization
 	void Start () {
@@ -16,6 +18,7 @@ public class PlayerShoot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        nextShotImage.fillAmount = 1.0f - nextFire / fireRate;
         if (Input.GetButtonDown("Fire1") && nextFire <= 0)
         {
             nextFire += fireRate;
@@ -27,6 +30,8 @@ public class PlayerShoot : MonoBehaviour {
 
     void Shoot()
     {
+        FindObjectOfType<AudioManager>().Play("gun");
+
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, range))
         {

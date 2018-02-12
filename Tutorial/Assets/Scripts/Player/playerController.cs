@@ -47,6 +47,8 @@ public class playerController : MonoBehaviour {
     {
         if (grounded)
         {
+            FindObjectOfType<AudioManager>().Play("jump");
+
             myrb.velocity = new Vector3(myrb.velocity.x, 0, myrb.velocity.z);
             myrb.AddForce(new Vector3(0, jumpspeed, 0), ForceMode.Impulse);
         }
